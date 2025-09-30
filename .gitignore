@@ -1,0 +1,369 @@
+# Intelligent Traffic Management System - .gitignore
+# Excludes large/unnecessary files while keeping project functional
+
+# ============================================================================
+# YOLO Models (Large Files - Download automatically)
+# ============================================================================
+*.pt
+*.onnx
+*.engine
+*.trt
+models/*.pt
+models/*.onnx
+models/*.engine
+models/*.trt
+models/Results(new_indian_ambulance_yolov11n)
+# Exclude YOLO models in root directory (will be downloaded by setup script)
+yolov8*.pt
+roboflow_ambulance*.pt
+
+# ============================================================================
+# Python Environment & Dependencies
+# ============================================================================
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+.conda/
+conda-meta/
+debug/
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# ============================================================================
+# IDE and Editor Files
+# ============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Spyder
+.spyderproject
+.spyproject
+
+# Rope
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# ============================================================================
+# Operating System Files
+# ============================================================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================================================
+# Data and Output Files
+# ============================================================================
+# Video files (usually large)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+*.wmv
+*.webm
+*.m4v
+
+# Image files (screenshots, outputs)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.svg
+*.ico
+
+# Audio files
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+
+# Data files
+*.csv
+*.xlsx
+*.xls
+*.json
+*.xml
+*.sqlite
+*.db
+*.sqlite3
+
+# Compressed files
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.bz2
+*.xz
+
+# ============================================================================
+# Logs and Temporary Files
+# ============================================================================
+# Log files
+logs/
+*.log
+*.log.*
+log/
+*.out
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+.temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+data/
+logs/
+.kiro/
+# Cache directories
+.cache/
+cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+videos/
+images/
+# ============================================================================
+# AI/ML Specific Files
+# ============================================================================
+# Ultralytics YOLO cache
+
+*.cache
+yolo_cache/
+
+# TensorBoard logs
+tensorboard_logs/
+tb_logs/
+
+# Model checkpoints and weights
+checkpoints/
+weights/
+*.pth
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# Dataset files (usually large)
+datasets/
+data/raw/
+data/processed/
+data/external/
+*.tfrecord
+
+# ============================================================================
+# Configuration and Secrets
+# ============================================================================
+# Environment variables
+.env
+.env.local
+.env.*.local
+.envrc
+
+# API keys and secrets
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+config/secrets.yaml
+config/production.yaml
+config/staging.yaml
+
+# ============================================================================
+# Testing and Coverage
+# ============================================================================
+# Test outputs
+test-results/
+test_results/
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+nosetests.xml
+coverage.xml
+*.coveragerc
+gpu_check.ipynb
+# ============================================================================
+# Documentation Build Files
+# ============================================================================
+docs/_build/
+docs/build/
+site/
+
+# ============================================================================
+# Backup Files
+# ============================================================================
+*.bak
+*.backup
+*.old
+*_backup
+*_old
+*.orig
+
+# ============================================================================
+# Project Specific Exclusions
+# ============================================================================
+# Kiro IDE files (keep .kiro/specs but exclude cache)
+.kiro/cache/
+.kiro/logs/
+.kiro/temp/
+
+# Output directories
+output/
+outputs/
+results/
+screenshots/
+recordings/
+Vehicle Dataset/
+dataset/
+# Analysis files
+analysis/
+reports/
+metrics/
+new_dataset/
+# ============================================================================
+# IMPORTANT: Files to KEEP (Override exclusions)
+# ============================================================================
+# Force include essential project files
+!requirements.txt
+!requirements_optimized.txt
+!final_tracking_detection.py
+!README.md
+!PRODUCTION_SUMMARY.md
+!SETUP_GUIDE.md
+!setup.py
+!setup.bat
+!setup.sh
+!setup_environment.py
+
+# Keep source code
+!src/
+!src/**/*.py
+
+# Keep configuration templates
+!config/
+!config/*.yaml
+!config/*.json
+!config/README.md
+
+# Keep tests
+!tests/
+!tests/**/*.py
+
+# Keep documentation
+!docs/
+!docs/**/*.md
+
+# Keep specs and project management
+!.kiro/specs/
+!.kiro/specs/**/*.md
+
+# Keep essential config files
+!.gitignore
+!.gitattributes
+!pyproject.toml
+!setup.cfg
+
+# ============================================================================
+# Git LFS (Large File Storage) - for future use
+# ============================================================================
+# If you want to track large files with Git LFS, uncomment these:
+# *.pt filter=lfs diff=lfs merge=lfs -text
+# *.onnx filter=lfs diff=lfs merge=lfs -text
+# *.mp4 filter=lfs diff=lfs merge=lfs -text
+
+# ============================================================================
+# END OF .gitignore
+# ============================================================================

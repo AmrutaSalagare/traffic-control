@@ -1,0 +1,58 @@
+# Development environment configuration
+environment: development
+log_level: DEBUG
+max_workers: 2
+processing_interval: 0.1
+emergency_response_timeout: 30
+
+# AI Models configuration
+models:
+  vehicle_model_path: "models/yolov8n.pt"
+  ambulance_model_path: "models/ambulance_detector.pt"
+  confidence_threshold: 0.8
+  device: "cpu"
+  optimization: "onnx"
+
+# Database configuration
+database:
+  local_db_path: "data/traffic_data.db"
+  retention_days: 7
+  backup_enabled: true
+  backup_interval_hours: 6
+
+# Camera configuration (example)
+cameras:
+  cam_001:
+    camera_id: "cam_001"
+    rtsp_url: "rtsp://192.168.1.100:554/stream1"
+    resolution: [1920, 1080]
+    fps: 30
+    detection_zones:
+      north_lane: { "x": 0, "y": 0, "width": 960, "height": 540 }
+      south_lane: { "x": 960, "y": 0, "width": 960, "height": 540 }
+      east_lane: { "x": 0, "y": 540, "width": 960, "height": 540 }
+      west_lane: { "x": 960, "y": 540, "width": 960, "height": 540 }
+
+# Traffic controller configuration
+traffic_controller:
+  controller_type: "gpio"
+  connection_params:
+    gpio_pins:
+      north_south_red: 18
+      north_south_yellow: 19
+      north_south_green: 20
+      east_west_red: 21
+      east_west_yellow: 22
+      east_west_green: 23
+  intersection_id: "intersection_001"
+  signal_phases:
+    north_south: 30
+    east_west: 25
+  minimum_green_time: 10
+  all_red_clearance: 3
+# Firebase configuration (optional for development)
+# firebase:
+#   project_id: "traffic-management-dev"
+#   credentials_path: "config/firebase-credentials.json"
+#   realtime_db_url: "https://traffic-management-dev.firebaseio.com"
+#   storage_bucket: "traffic-management-dev.appspot.com"

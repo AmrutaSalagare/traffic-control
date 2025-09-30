@@ -1,0 +1,2 @@
+# This file ensures the models directory is tracked by git
+# AI model files (.pt, .onnx, .trt) will be stored here

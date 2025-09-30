@@ -1,0 +1,27 @@
+##############################################
+# Minimal runtime requirements (production)  #
+##############################################
+
+# Core ML/CV stack
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+Pillow>=9.5.0
+PyYAML>=6.0
+
+# Tracking (ByteTrack-style Kalman + matching)
+scipy>=1.10.0
+filterpy>=1.4.5
+
+# Optional extras (uncomment if needed)
+# onnx>=1.14.0          # Export models to ONNX
+# onnxruntime>=1.15.0   # Run ONNX models
+# requests>=2.31.0      # If using Roboflow integration
+# psutil>=5.9.0         # System monitoring in production
+# matplotlib>=3.7.0     # Debugging/plots only
+# seaborn>=0.12.0       # Debugging/plots only
+
+# Dev/test tools are intentionally excluded here.
+# Create a separate requirements-dev.txt if needed.

@@ -1,0 +1,75 @@
+{
+  "models": {
+    "primary_yolo": {
+  "model_path": "models/indian_ambulance_yolov11m_best.pt",
+  "confidence_threshold": 0.07,
+  "device": "cuda",
+  "weight": 0.7,
+  "enabled": true,
+  "classes": [0]
+    },
+    "secondary_yolo": {
+  "model_path": "models/yolov8s.pt",
+  "confidence_threshold": 0.20,
+  "device": "cuda",
+  "weight": 0.2,
+  "enabled": true
+    },
+    "visual_features": {
+  "weight": 0.1,
+      "enabled": true,
+      "min_area_threshold": 300,
+      "color_sensitivity": "high"
+    }
+  },
+  "ensemble": {
+    "min_models": 1,
+    "confidence_threshold": 0.20,
+    "voting_strategy": "weighted"
+  },
+  "visual_features": {
+    "red_cross_weight": 0.3,
+    "siren_lights_weight": 0.4,
+    "text_detection_weight": 0.15,
+    "color_scheme_weight": 0.15,
+    "red_detection": {
+      "hue_range_lower": [0, 165],
+      "hue_range_upper": [15, 180],
+      "saturation_min": 30,
+      "value_min": 30
+    },
+    "white_detection": {
+      "saturation_max": 40,
+      "value_min": 180
+    },
+    "blue_detection": {
+      "hue_range": [100, 130],
+      "saturation_min": 30,
+      "value_min": 30
+    }
+  },
+  "dataset_collection": {
+    "enabled": false,
+    "output_directory": "data/indian_emergency_dataset",
+    "collection_interval": 10,
+    "max_samples_per_hour": 100
+  },
+  "state_specific": {
+    "maharashtra": {
+      "priority_multiplier": 1.2,
+      "special_features": ["108_number", "orange_stripe", "marathi_text"]
+    },
+    "delhi": {
+      "priority_multiplier": 1.1,
+      "special_features": ["102_number", "green_stripe", "hindi_text"]
+    },
+    "karnataka": {
+      "priority_multiplier": 1.1,
+      "special_features": ["108_number", "yellow_stripe", "kannada_text"]
+    },
+    "generic": {
+      "priority_multiplier": 1.0,
+      "special_features": ["red_cross", "emergency_lights"]
+    }
+  }
+}

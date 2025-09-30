@@ -1,0 +1,11 @@
+# Core requirements
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+numpy>=1.24.0
+# Using onnxruntime only for inference
+onnxruntime>=1.15.0
+# OpenCV for image processing
+opencv-python>=4.8.0
+# For image processing
+Pillow>=9.5.0

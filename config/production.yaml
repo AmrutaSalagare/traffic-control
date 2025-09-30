@@ -1,0 +1,71 @@
+# Production environment configuration
+environment: production
+log_level: INFO
+max_workers: 4
+processing_interval: 0.05
+emergency_response_timeout: 15
+
+# AI Models configuration
+models:
+  vehicle_model_path: "/opt/traffic_ai/models/yolov8s.pt"
+  ambulance_model_path: "/opt/traffic_ai/models/ambulance_detector_optimized.pt"
+  confidence_threshold: 0.85
+  device: "cuda"
+  optimization: "tensorrt"
+
+# Database configuration
+database:
+  local_db_path: "/var/lib/traffic_ai/traffic_data.db"
+  retention_days: 7
+  backup_enabled: true
+  backup_interval_hours: 2
+
+# Camera configuration
+cameras:
+  cam_north:
+    camera_id: "cam_north"
+    rtsp_url: "rtsp://10.0.1.10:554/stream1"
+    resolution: [1920, 1080]
+    fps: 30
+    detection_zones:
+      lane_1: { "x": 100, "y": 200, "width": 400, "height": 600 }
+      lane_2: { "x": 500, "y": 200, "width": 400, "height": 600 }
+      lane_3: { "x": 900, "y": 200, "width": 400, "height": 600 }
+
+  cam_south:
+    camera_id: "cam_south"
+    rtsp_url: "rtsp://10.0.1.11:554/stream1"
+    resolution: [1920, 1080]
+    fps: 30
+    detection_zones:
+      lane_1: { "x": 100, "y": 200, "width": 400, "height": 600 }
+      lane_2: { "x": 500, "y": 200, "width": 400, "height": 600 }
+      lane_3: { "x": 900, "y": 200, "width": 400, "height": 600 }
+
+# Traffic controller configuration
+traffic_controller:
+  controller_type: "modbus"
+  connection_params:
+    host: "10.0.1.50"
+    port: 502
+    unit_id: 1
+    registers:
+      north_south_red: 1
+      north_south_yellow: 2
+      north_south_green: 3
+      east_west_red: 4
+      east_west_yellow: 5
+      east_west_green: 6
+  intersection_id: "main_intersection_001"
+  signal_phases:
+    north_south: 45
+    east_west: 35
+  minimum_green_time: 15
+  all_red_clearance: 4
+
+# Firebase configuration
+firebase:
+  project_id: "traffic-management-prod"
+  credentials_path: "/etc/traffic_ai/firebase-credentials.json"
+  realtime_db_url: "https://traffic-management-prod.firebaseio.com"
+  storage_bucket: "traffic-management-prod.appspot.com"

@@ -1,0 +1,7 @@
+{
+  "debug_ambulance": true,
+  "debug_vehicle": false,
+  "log_level": "INFO",
+  "save_debug_images": false,
+  "debug_output_dir": "debug_output"
+}

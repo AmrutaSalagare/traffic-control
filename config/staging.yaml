@@ -1,0 +1,57 @@
+# Staging environment configuration
+environment: staging
+log_level: INFO
+max_workers: 3
+processing_interval: 0.1
+emergency_response_timeout: 20
+
+# AI Models configuration
+models:
+  vehicle_model_path: "models/yolov8s.pt"
+  ambulance_model_path: "models/ambulance_detector.pt"
+  confidence_threshold: 0.8
+  device: "cuda"
+  optimization: "onnx"
+
+# Database configuration
+database:
+  local_db_path: "data/staging_traffic_data.db"
+  retention_days: 3
+  backup_enabled: true
+  backup_interval_hours: 4
+
+# Camera configuration
+cameras:
+  test_cam_001:
+    camera_id: "test_cam_001"
+    rtsp_url: "rtsp://192.168.100.10:554/stream1"
+    resolution: [1920, 1080]
+    fps: 25
+    detection_zones:
+      test_lane_1: { "x": 0, "y": 0, "width": 960, "height": 1080 }
+      test_lane_2: { "x": 960, "y": 0, "width": 960, "height": 1080 }
+
+# Traffic controller configuration
+traffic_controller:
+  controller_type: "gpio"
+  connection_params:
+    gpio_pins:
+      north_south_red: 18
+      north_south_yellow: 19
+      north_south_green: 20
+      east_west_red: 21
+      east_west_yellow: 22
+      east_west_green: 23
+  intersection_id: "staging_intersection_001"
+  signal_phases:
+    north_south: 30
+    east_west: 25
+  minimum_green_time: 10
+  all_red_clearance: 3
+
+# Firebase configuration
+firebase:
+  project_id: "traffic-management-staging"
+  credentials_path: "config/firebase-credentials-staging.json"
+  realtime_db_url: "https://traffic-management-staging.firebaseio.com"
+  storage_bucket: "traffic-management-staging.appspot.com"
