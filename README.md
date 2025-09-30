@@ -1,4 +1,6 @@
-# Intelligent Traffic Management System
+# Production-ready vehicle + ambulance detection & tracking pipeline optimized for | Balanced (default) | yolo11s (GPU) / yolo11n (CPU) | 640              | Good trade-off             |
+| `--fast`           | yolo11n                       | 480              | Lower latency, single scale |
+| `--accuracy`       | yolo11s                       | 832 (GPU) / 640 (CPU) | Larger size, more recall    |ian traffic. The system now uses a **single simplified CLI**, **smart defaults**, and a **custom YOLOv11m ambulance model** with optional fallback. Legacy experimental flags and scripts have been removed for clarity.ntelligent Traffic Management System
 
 Production‑ready vehicle + ambulance detection & tracking pipeline optimized for Indian traffic. The system now uses a **single simplified CLI**, **smart defaults**, and a **custom YOLOv11m ambulance model** with optional fallback. Legacy experimental flags and scripts have been removed for clarity.
 
@@ -6,15 +8,15 @@ Production‑ready vehicle + ambulance detection & tracking pipeline optimized f
 
 | Capability                                  | Status                            |
 | ------------------------------------------- | --------------------------------- |
-| Vehicle detection (YOLOv11 n/s)             | ✅                                |
-| ByteTrack tracking (auto if deps available) | ✅                                |
-| Ambulance detection (raw YOLOv11m custom)   | ✅                                |
-| Fallback ambulance YOLOv8 model             | ✅                                |
-| Adaptive ROI (road focus)                   | ✅ (always on unless disabled)    |
-| Line crossing logic                         | ✅ (internal)                     |
-| Unified vehicle labeling option             | ✅ (`--unified-vehicles`)         |
+| Vehicle detection (YOLOv11 n/s)            | ✅                          |
+| ByteTrack tracking (auto if deps available) | ✅                          |
+| Ambulance detection (raw YOLOv11m custom)   | ✅                          |
+| Fallback ambulance YOLOv8 model            | ✅                          |
+| Adaptive ROI (road focus)                  | ✅ (always on unless disabled)    |
+| Line crossing logic                        | ✅ (internal)                   |
+| Unified vehicle labeling option            | ✅ (`--unified-vehicles`)         |
 | Ensemble / visual feature ambulance mode    | Optional (`--ambulance-ensemble`) |
-| Verbose ambulance debug                     | Optional (`--ambulance-debug`)    |
+| Verbose ambulance debug                    | Optional (`--ambulance-debug`)    |
 
 Removed / deprecated (old docs may mention): `--super-fast`, `--use-bytetrack`, homography calibration UI, manual TTA flags, dense traffic flags, many ambulance tuning knobs.
 
@@ -23,8 +25,8 @@ Removed / deprecated (old docs may mention): `--super-fast`, `--use-bytetrack`, 
 ### 1) Clone
 
 ```bash
-git clone https://github.com/yourusername/traffic_control.git
-cd traffic_control
+git clone https://github.com/AmrutaSalagare/traffic-control.git
+cd traffic-control
 ```
 
 ### 2) Install dependencies
@@ -40,7 +42,7 @@ Models folder (`models/`) should contain:
 - `yolo11n.pt` (fast)
 - `yolo11s.pt` (balanced/accuracy baseline)
 - `indian_ambulance_yolov11m_best.pt` (PRIMARY ambulance model)
-- `indian_ambulance_yolov8.pt` (fallback – optional)
+- `indian_ambulance_yolov8.pt` (fallback - optional)
 
 ### 3) Run
 
@@ -87,7 +89,7 @@ python final_tracking_detection.py --ambulance-conf 0.08
 
 ## 📊 Typical Performance (illustrative)
 
-- CPU: ~3–5 FPS standard, up to ~10–12 FPS with `--super-fast` (content/hardware dependent)
+- CPU: ~3-5 FPS standard, up to ~10-12 FPS with `--super-fast` (content/hardware dependent)
 - GPU: higher throughput with the same flags
 - Accurate counting via ByteTrack + line-crossing
 
@@ -123,23 +125,27 @@ Ambulance:
 ## 🏗 Simplified Flow
 
 ```
+```
 Frame → Vehicle YOLO → (ByteTrack) → ROI Filter → Stats/Overlay → Display
             └─ every N frames → Ambulance YOLO (primary + optional fallback)
+```
 ```
 
 ## 📁 Project Structure (post‑cleanup)
 
 ```
+```
 ├── final_tracking_detection.py   # Main entry
 ├── src/services/
 │   ├── bytetrack_counter.py
 │   └── enhanced_emergency_detector.py
-├── models/                       # YOLO weights
-├── config/                       # emergency_detection.json + env yamls
-├── docs/                         # Consolidated docs
-├── tests/                        # Remaining tests
-├── videos/                       # Sample inputs
+├── models/                     # YOLO weights
+├── config/                     # emergency_detection.json + env yamls
+├── docs/                       # Consolidated docs
+├── tests/                      # Remaining tests
+├── videos/                     # Sample inputs
 └── requirements.txt
+```
 ```
 
 ## 🎛 Examples
@@ -215,4 +221,4 @@ MIT License - Production ready for commercial use
 
 ---
 
-Built for Indian traffic conditions 🇮🇳 – production simplified & maintained.
+Built for Indian traffic conditions 🇮🇳 - production simplified & maintained.
